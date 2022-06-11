@@ -9,11 +9,36 @@ import { CATEGORIES, TASKS } from "../data";
 
 function App() {
 
+const [text, setText] = useState("");
+const [formCategory, setFormCategory] = useState("Code")
+
 const [myTasks, setMyTasks] = useState(TASKS)
 const [selectedCategory, setSelectedCategory] = useState("All")
 
-function handleMyTasks(newTask) {
-  setMyTasks([...myTasks, newTask])
+// console.log(myTasks)
+
+function handleMyTasks(e) {
+  e.preventDefault();
+
+  const obj = {
+    text: text,
+    category: formCategory,
+}
+
+  console.log(obj)
+
+  setMyTasks([...myTasks, obj])
+
+  setText("");
+  setFormCategory("Code");
+}
+
+function handleTextChange(e){
+  setText(e.target.value)
+}
+
+function handleCategoryChange(e){
+  setFormCategory(e.target.value)
 }
 
 
@@ -30,8 +55,13 @@ const filteredTasks = myTasks.filter((task) => selectedCategory === "All" || tas
       onSelectedCategory={selectedCategory}
       onHandleCategory={setSelectedCategory}
        />
-      <NewTaskForm categories={CATEGORIES.filter((item)=> item !== "All")}
-      TaskFormSubmit={handleMyTasks}/>
+      <NewTaskForm 
+      text={text}
+      onTextChange={handleTextChange}
+      onCategoryChange={handleCategoryChange}
+      formCategory={formCategory}
+      categories={CATEGORIES.filter((item)=> item !== "All")}
+      onTaskFormSubmit={handleMyTasks}/>
       <TaskList tasks={filteredTasks} onDelete={removeTask} />
     </div>
   );
