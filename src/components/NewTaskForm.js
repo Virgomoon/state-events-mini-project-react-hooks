@@ -2,13 +2,6 @@ import React, {useState} from "react";
 
 function NewTaskForm({onTaskFormSubmit, categories, text, formCategory, onTextChange, onCategoryChange}) {
 
-  // function TaskFormSubmit(e) {
-  //   e.preventDefault();
-  //   onTaskFormSubmit({text, formCategory})
-  //   setText("");
-  //   setFormCategory("Code");
-  // }
-
   return (
     <form className="new-task-form" onSubmit={onTaskFormSubmit}>
       <label>

@@ -17,7 +17,7 @@ const [selectedCategory, setSelectedCategory] = useState("All")
 
 // console.log(myTasks)
 
-function handleMyTasks(e) {
+function onTaskFormSubmit(e) {
   e.preventDefault();
 
   const obj = {
@@ -26,6 +26,8 @@ function handleMyTasks(e) {
 }
 
   console.log(obj)
+  // console.log(e.target.text.value)
+  // console.log(e.target.category.value)
 
   setMyTasks([...myTasks, obj])
 
@@ -61,7 +63,7 @@ const filteredTasks = myTasks.filter((task) => selectedCategory === "All" || tas
       onCategoryChange={handleCategoryChange}
       formCategory={formCategory}
       categories={CATEGORIES.filter((item)=> item !== "All")}
-      onTaskFormSubmit={handleMyTasks}/>
+      onTaskFormSubmit={onTaskFormSubmit}/>
       <TaskList tasks={filteredTasks} onDelete={removeTask} />
     </div>
   );
