@@ -15,24 +15,14 @@ const [formCategory, setFormCategory] = useState("Code")
 const [myTasks, setMyTasks] = useState(TASKS)
 const [selectedCategory, setSelectedCategory] = useState("All")
 
-// console.log(myTasks)
+const obj = {
+  text: text,
+  category: formCategory,
+}
 
 function onTaskFormSubmit(e) {
   e.preventDefault();
-
-  const obj = {
-    text: text,
-    category: formCategory,
-}
-
-  console.log(obj)
-  // console.log(e.target.text.value)
-  // console.log(e.target.category.value)
-
   setMyTasks([...myTasks, obj])
-
-  setText("");
-  setFormCategory("Code");
 }
 
 function handleTextChange(e){
@@ -42,7 +32,6 @@ function handleTextChange(e){
 function handleCategoryChange(e){
   setFormCategory(e.target.value)
 }
-
 
 function removeTask(taskItem){
   setMyTasks(myTasks.filter((item)=> item.text !== taskItem));
